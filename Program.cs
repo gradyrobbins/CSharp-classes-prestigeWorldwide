@@ -34,7 +34,7 @@ namespace classesExercises
     public DateTime CreatedOn { get; }
 
     // Create a public property for holding a list of current employees
-    public List<string> EmployeesList = new List<string>();
+    public List<Employee> Employees {get; set;}
 
     // Create a constructor method that accepts two arguments:
     //     1. The name of the company
@@ -44,6 +44,7 @@ namespace classesExercises
     public Company(string name, DateTime dateTime) {
         Name = name;
         CreatedOn = dateTime;
+        Employees = new List<Employee>();
     }
 
     /*
@@ -51,11 +52,10 @@ namespace classesExercises
     */
     public void ListEmployees()
     {
-        // foreach employee in EmployeesList {
-        // get ($"{Employee.FullName }
+        foreach(Employee employee in Employees) {
+                Console.WriteLine($"{employee.firstName} {employee.lastName} works for {Name} as{employee.title} since {employee.startDate.ToString("MM/dd/yyyy")}.");
 
-        // :   ");
-        // }
+        }
     }
 
 }
@@ -95,18 +95,23 @@ class Program
             };
 
         //write out the employees' names
-        Console.WriteLine($"{zac.FullName} \nworks for {prestigeWorldwide.Name} \ntitle:  {zac.title} \nsince {zac.startDate}\n\n");
-        Console.WriteLine($"{grady.FullName} \nworks for {prestigeWorldwide.Name} \ntitle:  {grady.title} \nsince \"****\"\n\n");
-        Console.WriteLine($"{selaamawit.FullName} \nworks for {prestigeWorldwide.Name} \ntitle:  {selaamawit.title} \nsince \"****\"\n\n");
-
+        // Console.WriteLine($"{zac.FullName} \nworks for {prestigeWorldwide.Name} \ntitle:  {zac.title} \nsince {zac.startDate}\n\n");
+        // Console.WriteLine($"{grady.FullName} \nworks for {prestigeWorldwide.Name} \ntitle:  {grady.title} \nsince \"****\"\n\n");
+        // Console.WriteLine($"{selaamawit.FullName} \nworks for {prestigeWorldwide.Name} \ntitle:  {selaamawit.title} \nsince \"****\"\n\n");
 
 
         // Assign the employees to the company
+        prestigeWorldwide.Employees.Add(zac);
+        prestigeWorldwide.Employees.Add(grady);
+        prestigeWorldwide.Employees.Add(selaamawit);
 
         /*
             Iterate the company's employee list and generate the
             simple report shown above
         */
+
+    prestigeWorldwide.ListEmployees();
+
     }
 }
 }
